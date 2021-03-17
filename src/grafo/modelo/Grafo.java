@@ -9,24 +9,24 @@ import com.grafo.modelo.excepcion.GrafoExcepcion;
 import java.util.List;
 import grafo.modelo.Vertice;
 import grafo.modelo.Arista;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author mayko
  */
-public class Grafo {
+public abstract class Grafo implements Serializable{
 
     //atributos
     private List<Vertice> vertices;
     private List<Arista> aristas;
-    private boolean dirigido;
     private short consecutivo;
 
     //--------------------------------------//
     //constructores
-    public Grafo(boolean dirigido) {
-        this.dirigido = dirigido;
+    public Grafo() {
+        
         this.vertices = new ArrayList<>();
         this.aristas = new ArrayList<>();
     }
@@ -49,14 +49,6 @@ public class Grafo {
         this.aristas = aristas;
     }
 
-    public boolean isDirigido() {
-        return dirigido;
-    }
-
-    public void setDirigido(boolean dirigido) {
-        this.dirigido = dirigido;
-    }
-
     public short getConsecutivo() {
         return consecutivo;
     }
@@ -68,12 +60,13 @@ public class Grafo {
     //------------------------------------------//
     //metodos
     //Adicionar vertice
-    public void adicionarVertice(Object dato) {
-        Vertice nuevo = new Vertice(dato, ++consecutivo);
-        vertices.add(nuevo);
+  public void adicionarVertice(Object dato)
+    {
+        Vertice nuevo= new Vertice(dato,++ consecutivo );
+        vertices.add(nuevo);        
     }
 
-    public void adicionarArista(Arista arista) throws GrafoExcepcion
+   public void adicionarArista(Arista arista) throws GrafoExcepcion
     {
         if(validarExistenciaArista(arista))
         {
@@ -82,25 +75,22 @@ public class Grafo {
         aristas.add(arista);
     }
     
+    public abstract boolean  validarExistenciaArista(Arista arista);
+    
+    public abstract List<Arista> obtenerAdyacencias(int origen);
+    
 
-    public boolean validarExistenciaArista(Arista arista) {
-        //List<Arista>aristasOrigen= new ArrayList<>();
-        for (Arista ari : this.aristas) {
-            if (ari.equals(arista)) {
-                return true;
-            }
-        }
-        return false;
-    }
+    
+//    public boolean validarExistenciaArista(Arista arista) {
+//        //List<Arista>aristasOrigen= new ArrayList<>();
+//        for (Arista ari : this.aristas) {
+//            if (ari.equals(arista)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     //--------------------------------------------//
-    public void eliminarVertice(short codigo) {
 
-    }
-    //-----------------//
-
-    //--------------------------------------------//
-    public void eliminarArista(Arista arista) {
-
-    }
 }

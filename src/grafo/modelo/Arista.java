@@ -12,8 +12,8 @@ package grafo.modelo;
 public class Arista {
 
     //atributos
-    private short origen;
-    private short destino;
+    private int origen;
+    private int destino;
     private short peso;
 
     //--------------------------------------------------------//
@@ -21,7 +21,7 @@ public class Arista {
     public Arista() {
     }
 
-    public Arista(short origen, short destino, short peso) {
+    public Arista(int origen, int destino, short peso) {
         this.origen = origen;
         this.destino = destino;
         this.peso = peso;
@@ -29,7 +29,7 @@ public class Arista {
 
     //--------------------------------------------------------//
     //get y set
-    public short getOrigen() {
+    public int getOrigen() {
         return origen;
     }
 
@@ -37,7 +37,7 @@ public class Arista {
         this.origen = origen;
     }
 
-    public short getDestino() {
+    public int  getDestino() {
         return destino;
     }
 
@@ -59,19 +59,7 @@ public class Arista {
         return "Arista{" + "origen=" + origen + ", destino=" + destino + ", peso=" + peso + '}';
     }
 
-     @Override
-    public boolean equals(Object obj) {
-        if(obj instanceof Arista)
-        {            
-            if( ((Arista) obj).getOrigen() == origen 
-                    && ((Arista) obj).getDestino() == destino 
-                    && ((Arista) obj).getPeso()== peso)
-            {
-                return true;
-            }            
-        }
-        return false;
-    }
+     
 
     
     
